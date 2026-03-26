@@ -185,14 +185,14 @@ $$\text{LN}(x) = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
   - 梯度流更好（残差路径无变换）
   - 现代大模型首选
 
-### Q: RMSNorm 是什么？
+### Q: RMSNorm 是什么？-（minimind使用）
 
 RMSNorm 是 LayerNorm 的简化版，去掉了均值中心化和偏移 $\beta$：
 
 $$\text{RMSNorm}(x) = \frac{x}{\sqrt{\frac{1}{d}\sum_{i=1}^{d}x_i^2 + \epsilon}} \cdot \gamma$$
 
-- 计算更高效
-- LLaMA 系列使用
+- 计算更高效（RMSNorm的计算过程比LayerNorm更简单，因为它不涉及均值的计算，并且减少了一个可学习参数。LayerNorm在归一化时需要计算每个token的均值和方差，并使用它们来标准化输入。而RMSNorm只需要计算特征的平方和，减少了计算复杂度和内存消耗。）
+- meta的LLaMA 系列使用
 
 ---
 
